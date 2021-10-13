@@ -1,9 +1,12 @@
-#import sys
-#sys.path.insert(0, '../src')
-from src.utils.common import read_config
+import sys
+sys.path.insert(0, '../src')
+from utils.common import read_config
 import argparse
-from src.utils.data_management import get_data
-from src.utils.model import create_model, save_model
+from utils.data_management import get_data
+#from utils.model import create_model, save_model
+from utils.model import create_model
+from utils.savee import save_model
+import os
 
 
 def training(config_path):
@@ -23,13 +26,12 @@ def training(config_path):
     history = model.fit(x_train, y_train, epochs=EPOCHS, validation_data=VALIDATION)
 
 
-    artifacts=config["artifacts"]["artifacts_dir"]
+    artifacts_dir = config["artifacts"]["artifacts_dir"]
     model_name = config["artifacts"]["model_name"]
 
     model_dir = config["artifacts"]["model_dir"]
 
     model_dir_path = os.path.join(artifacts_dir, model_dir)
-
     os.makedirs(model_dir_path, exist_ok=True)
 
     save_model(model, model_name, model_dir_path)
