@@ -1,11 +1,11 @@
 params:
-  epochs: 30
+  epochs: 1
   batch_size: 32
   no_classes: 10
   input_shape: [28,28]
-  loss_function: sparse_categorical_crossentropy
-  matrics: accuracy
-  optimizer: sgd
+  LOSS_FUNCTION: sparse_categorical_crossentropy
+  METRICS: accuracy
+  OPTIMIZER: sgd
   validation_datasize: 5000
 
 
@@ -14,6 +14,8 @@ artifacts:
   model_dir: model
   plots_dr: plots
   checkpoint_dr: checkpoints
+  model_name: model.h5
+
 
 
   logs:
