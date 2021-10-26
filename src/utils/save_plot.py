@@ -1,15 +1,22 @@
 import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-from matplotlib.colors import ListedColormap
-import joblib # for saving method
-plt.style.use("fivethirtyeight")# this is style of graphs
+#plt.style.use("fivethirtyeight")# this is style of graphs
+#import logging
 import os
-import logging
+import pandas as pd
 
 
-def save_plot(df, file_name, model):
-  def _create_base_plot(df):
-      df.plot(kind="scatter", x="x1", y="x2", c="y", s=100, cmap="winter")
-      figure = plt.gcf() # get current figure
-      figure.set_size_inches(10, 8)
+
+
+
+def saved_plot(df, plot_name, plot_dir):
+    df.plot(figsize=(8, 5))
+    plt.grid(True)
+    plt.gca().set_ylim(0, 1)
+
+
+    unique_file = plot_name
+    os.makedirs(plot_dir, exist_ok=True)
+    plot_path = os.path.join(plot_dir, plot_name)
+    plt.savefig(plot_path)
+    plt.show
+

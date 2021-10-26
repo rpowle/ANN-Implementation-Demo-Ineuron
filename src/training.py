@@ -6,7 +6,11 @@ from utils.data_management import get_data
 #from utils.model import create_model, save_model
 from utils.model import create_model
 from utils.savee import save_model
+from utils.save_plot import saved_plot
 import os
+import pandas as pd
+
+
 
 
 def training(config_path):
@@ -36,6 +40,11 @@ def training(config_path):
 
     save_model(model, model_name, model_dir_path)
 
+    plot_dir = config["artifacts"]["plots_dr"]
+    plot_name = config["artifacts"]["plot_name"]
+
+    saved_plot(pd.DataFrame(history.history), plot_name, plot_dir)
+
 
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
@@ -44,3 +53,4 @@ if __name__ == '__main__':
 
     parsed_args = args.parse_args()
     training(config_path=parsed_args.config)
+
